@@ -75,6 +75,7 @@ class DateScrollView extends StatelessWidget {
             controller: controller,
             physics: const FixedExtentScrollPhysics(),
             perspective: options.perspective,
+            squeeze: 0.5,
             onSelectedItemChanged: onChanged,
             childDelegate: options.isLoop && dates.length > _maximumCount
                 ? ListWheelChildLoopingListDelegate(
@@ -97,10 +98,13 @@ class DateScrollView extends StatelessWidget {
 
   Widget _buildDateView({required int index}) {
     return Container(
-      alignment: scrollViewOptions.alignment,
+      alignment: Alignment.center,
       child: Text(
         '${dates[index]}${scrollViewOptions.label}',
-        style: selectedIndex == index ? scrollViewOptions.selectedTextStyle : scrollViewOptions.textStyle,
+        textAlign: TextAlign.center,
+        style: selectedIndex == index
+            ? scrollViewOptions.selectedTextStyle
+            : scrollViewOptions.textStyle,
       ),
     );
   }
